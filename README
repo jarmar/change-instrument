@@ -41,13 +41,13 @@ OPTIONS
         Change all channels (except any specified with -c) to the same instrument. Defaults to Acoustic Grand Piano, but see -d.
 
 EXAMPLES
-    change-instrument -o "Joyful piano.mid" -p Joyful.mid
+    change-instrument -o "Joyful piano.mid" -s Joyful.mid
         Change all instruments in Joyful.mid to Acoustic Grand Piano.
-    change-instrument -c [(0, "Recorder"), (1, 56), (2, "Oboe"), (3, 42)] -p -o "Kul jul.mid" "Jul jul.mid"
+    change-instrument -c "(0, Recorder)" -c "(1, 56)" -c "(2, Oboe)" -c "(3, 42)" -s -o "Kul jul.mid" "Jul jul.mid"
         Change channels 0-3 to the instruments Recorder, Trumpet, Oboe and Cello, and any other channels to Acoustic Grand Piano.
 
 INSTRUMENT LIST
-    Instruments can be specified either by program number (0-127 (NOT 1-128)) or as a case-sensitive string with quotation marks. A list of instruments available in General MIDI is given below.
+    Instruments can be specified either by program number (0-127 (NOT 1-128)) or as a case-sensitive string with quotation marks if necessary (that is: unless already enclosed in quotation marks and containing spaces). A list of instruments available in General MIDI is given below.
 
     0   Acoustic Grand Piano
     1   Bright Acoustic Piano
