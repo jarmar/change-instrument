@@ -47,7 +47,7 @@ EXAMPLES
         Change channels 0-3 to the instruments Recorder, Trumpet, Oboe and Cello, and any other channels to Acoustic Grand Piano.
 
 INSTRUMENT LIST
-    Instruments can be specified either by program number (0-127 (NOT 1-128)) or as a case-sensitive string with quotation marks if necessary (that is: unless already enclosed in quotation marks and containing spaces). A list of instruments available in General MIDI is given below.
+    Instruments can be specified either by program number (0-127 (NOT 1-128)) or as a case-sensitive string with quotation marks if necessary (that is: containing spaces and not already enclosed in quotation marks). A list of instruments available in General MIDI is given below.
 
     0   Acoustic Grand Piano
     1   Bright Acoustic Piano
