@@ -2,8 +2,6 @@ module Main where
 
 import qualified Data.Map.Strict as M
 import Data.Monoid
-import Data.List (stripPrefix)
-import Data.Char (isSpace)
 
 import Options.Applicative
 
@@ -11,47 +9,10 @@ import qualified Sound.MIDI.File.Load as L
 import qualified Sound.MIDI.File.Save as S
 import qualified Sound.MIDI.Message.Channel as CM
 import qualified Sound.MIDI.Message.Channel.Voice as VM
-import qualified Sound.MIDI.General as GM
 
 import Filter
+import Instances
 
-instance Read CM.Channel where
-  readsPrec = channelReadsPrec
-
-instance Read VM.Program where
-  readsPrec = programReadsPrec
-
--- It would probably be nicer to rewrite these in a monadic style.
-channelReadsPrec :: Int -> ReadS CM.Channel
-channelReadsPrec _ s =
-  case reads s :: [(Int, String)] of
-       [(n, s')] -> if n >= 0 && n < 16
-                       then [(CM.toChannel n, s')]
-                       else []
-       _         -> []
-
-programReadsPrec :: Int -> ReadS VM.Program
-programReadsPrec _ s =
-  case reads s :: [(Int, String)] of
-       [(n, s')] -> if n >= 0 && n < 128
-                       then [(VM.toProgram n, s')]
-                       else []
-       _         -> matchInstrumentNames s
-
-matchInstrumentNames :: ReadS VM.Program
-matchInstrumentNames s =
-  foldl go [] GM.instrumentNames
-  where
-    trimmed = dropWhile isSpace s
-    go :: [(VM.Program, String)] -> String -> [(VM.Program, String)]
-    go res instrName =
-      case stripPrefix instrName trimmed of
-           Nothing -> res
-           Just s' -> case GM.instrumentNameToProgram instrName of
-                           Nothing -> res -- this REALLY shouldn't happen,
-                           -- and if it does, it should probably not just be
-                           -- ignored
-                           Just p  -> (p, s'):res
 
 data Args = Args
   { outfile :: FilePath
@@ -65,7 +26,7 @@ data Args = Args
 instrumentSpec :: Parser (CM.Channel, VM.Program)
 instrumentSpec = option auto
   ( short 'c'
-  <> metavar "(CH, INSTR)"
+  <> metavar "\"(CH, INSTR)\""
   <> help "Lorem ipsum dolor sit amet." )
 
 useSame :: Parser Bool

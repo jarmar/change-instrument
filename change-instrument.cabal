@@ -14,7 +14,7 @@ cabal-version:       >=1.10
 
 executable change-instrument
   main-is:             Main.hs
-  other-modules:       Filter
+  other-modules:       Filter, Instances
   -- other-extensions:    
   build-depends:       base >=4.7 && <4.9,
                        containers, event-list,
