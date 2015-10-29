@@ -2,6 +2,7 @@ module Main where
 
 import qualified Data.Map.Strict as M
 import Data.Monoid
+import Data.List (delete)
 
 import Options.Applicative
 
@@ -21,7 +22,7 @@ testMap = M.fromList [(CM.toChannel 0, VM.toProgram 0)
 
 defaultMap :: VM.Program -> ChannelInstrumentMap
 defaultMap p =
-  M.fromList $ map (\n -> (CM.toChannel n, p)) [0..15]
+  M.fromList $ map (\n -> (CM.toChannel n, p)) (delete 9 [0..15])
 
 mapFromArgs :: Args -> ChannelInstrumentMap
 mapFromArgs args =

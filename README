@@ -13,7 +13,6 @@ LIMITATIONS
     Only one instrument per channel for the entire duration of the file.
 
 BUGS
-    -s option should not touch channels that are playing drums. I guess I have to look a bit closer into the MIDI standard to fix that...
     Some instrument names may not exactly match the list below.
 
 POSSIBLE EXTENSIONS
